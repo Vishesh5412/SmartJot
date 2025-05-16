@@ -1,0 +1,82 @@
+html{
+    font-size: 17px;
+}
+.lgt-btn{
+    position: absolute;
+    right: 1rem;
+}
+.container{
+    display: block;
+    max-width: 1500px;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+.hdng{
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 500;
+}
+.l-text{
+    font-size: 1.7rem;
+}
+.m-text{
+    font-size: 1.2rem;
+}
+.h-tp{
+    font-size: 2rem;
+    break-inside: auto;
+    /* background-color: blue; */
+}
+.form-control{
+    border: 1px solid black;
+    font-size: 1.5rem;
+}
+.h-list-hing{
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    font-weight: 500;
+}
+.btn:active{
+    transform: scale(0.95);
+}
+.ntx-cnt{
+    margin-bottom: 50px;
+}
+.nts-div{
+    position: relative;
+    border-top: 1px solid black;
+    border-bottom: 1px solid rgb(166, 160, 160);
+    padding: .7rem 0;
+    margin: 2rem 0;
+}
+.nts-time{
+    position: absolute;
+    right: 0;
+    color: rgb(77, 75, 75);
+    bottom: -9px;
+    font-size: 1.1rem;
+}
+.fa-trash{
+    cursor: pointer;
+    margin-left: 1rem;
+    color: rgb(232, 7, 3);
+}
+.fa-clock{
+    color: black;
+}
+.note-category{
+    position: absolute;
+    right: 0;
+    top: 1rem;
+    font-size: 1.3rem;
+}
+.note-date{
+    font-size: 1.1rem;
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+}
+i{
+    cursor: pointer;
+}

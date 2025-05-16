@@ -1,0 +1,76 @@
+:root{
+    --primary-color:rgb(31, 147, 248);
+  }
+  html {
+  font-size: 17px;
+  }
+  body {
+  margin: 0;
+  padding: 0;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  height: 100%;
+  width: 100%;
+  }
+  .container{
+    display: grid;
+  }
+  h1,h3,h2{
+    font-weight: 500;
+    margin: .5rem;
+  }
+  .err-cont span{
+    display: inline-block;
+    margin: .4rem;
+  }
+  
+  .err-cont{
+    position: absolute;
+    top: 0px;
+    left: calc(50% - 140px);
+    background-color: rgba(234, 0, 0, 0.693);
+    color: white;
+    width: fit-content;
+  }
+  
+  #stl-font{
+    font-weight: 600;
+   color: var(--primary-color);
+   font-size: 2.6rem;
+  }
+  
+  .c-vis {
+  padding: 0.6rem;
+  width: 20rem;
+  margin: 0.2rem;
+  border-width: 0;
+  background-color: rgb(239, 234, 234);
+  font-size: 1rem;
+  border-width: none;
+  outline: none;
+  }
+  .cont-top {
+  margin: 0.4rem;
+  height: 10rem;
+  }
+  .sbt-btn {
+  cursor: pointer;
+  background-color: var(--primary-color);
+  border-width: 0;
+  color: white;
+  height: 2.5rem;
+  padding: 0 2rem;
+  margin-top: .6rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  &:active{
+    scale: .95;
+  }
+  }
+  .cont-p{
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+  }
+  
+  
