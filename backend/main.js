@@ -16,12 +16,24 @@ const port = process.env.PORT;
 
 const PostRouter = require("./routes/Notes");
 const UserRouter = require("./routes/User");
+const allowedOrigins = [
+  "http://localhost:3000",           // Local development
+  "https://smartjot-1.onrender.com"  // Deployed frontend
+];
+
 app.use(
   cors({
-    origin: "http://localhost:3000", // Allow requests from React frontend
-    credentials: true, // Allow cookies (like JWT) to be sent
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
   })
 );
+
 
 app.use(express.json());
 app.use("/api/Notes", PostRouter);
