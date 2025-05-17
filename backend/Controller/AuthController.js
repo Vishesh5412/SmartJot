@@ -28,7 +28,7 @@ module.exports.RegisterUser = async (req, res) => {
     res.cookie("token", JWTtoken, {
       httpOnly: true,
       secure: true,
-      sameSite: "Strict",
+      sameSite: "None",
       maxAge: 60 * 60 * 1000,
     }); //here the name of cookie is set as "token"
     const { password, ...userWithoutPassword } = CreateUser._doc;
@@ -68,7 +68,7 @@ module.exports.LoginUser = async (req, res) => {
     res.cookie("token", JWTtoken, {
       httpOnly: true,
       secure: true, // Only in production with HTTPS
-      sameSite: "Strict",
+      sameSite: "None",
       maxAge: 60 * 60 * 1000, // 1 hour
     });
     //registered user k sath hashed password bhi nhi bhejna hai
@@ -89,7 +89,7 @@ module.exports.LogoutUser = (req, res) => {
     res.clearCookie("token", {
       httpOnly: true,
       secure: true, // should be true in production with HTTPS
-      sameSite: "Strict",
+      sameSite: "None",
     });
     return res.status(200).json({ message: "User logged out successfully" });
   } catch (err) {

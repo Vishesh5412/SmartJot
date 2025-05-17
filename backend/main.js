@@ -13,16 +13,15 @@ const port = process.env.PORT || 5500;
 
 const PostRouter = require("./routes/Notes");
 const UserRouter = require("./routes/User");
-const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS.split(',');
-
+const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS.split(',').map(origin => origin.trim());
 
 app.use(
   cors({
     origin: function (origin, callback) {
       if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
+        callback(null, true);  // Allow the request
       } else {
-        callback(new Error("Not allowed by CORS"));
+        callback(new Error("Not allowed by CORS"));  // Reject the request
       }
     },
     credentials: true,
