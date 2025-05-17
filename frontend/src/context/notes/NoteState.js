@@ -1,6 +1,6 @@
 import noteContext from "./NoteContext";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect , useCallback} from "react";
 const NoteState = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -21,12 +21,8 @@ const NoteState = (props) => {
 
   const API = process.env.REACT_APP_API_URL;
 
-  useEffect(() => {
-    if (location.pathname === "/Home") {
-      fetchNotes();
-    }
-  }, [location]);
-  const fetchNotes = async () => {
+  
+  const fetchNotes = useCallback(async () => {
     try {
       const response = await fetch(`${API}/api/Notes/fetchnotes`, {
         method: "GET",
@@ -47,8 +43,12 @@ const NoteState = (props) => {
     } catch (err) {
       console.log("Unable to fetch notes", err.message);
     }
-  };
-
+  }, [API , navigate]);
+  useEffect(() => {
+    if (location.pathname === "/Home") {
+      fetchNotes();
+    }
+}, [location, fetchNotes]);  
   const fetchNote = async (id) => {
     try {
       const response = await fetch(`${API}/api/Notes/fetchnote/${id}`, {
