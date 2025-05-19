@@ -12,6 +12,9 @@
   height: 100%;
   width: 100%;
   }
+  input{
+    border-width: 0;
+  }
   .container{
     display: grid;
   }
@@ -38,7 +41,6 @@
    color: var(--primary-color);
    font-size: 2.6rem;
   }
-  
   .c-vis {
   padding: 0.6rem;
   width: 20rem;
@@ -53,6 +55,7 @@
   margin: 0.4rem;
   height: 10rem;
   }
+  
   .sbt-btn {
   cursor: pointer;
   background-color: var(--primary-color);
@@ -63,6 +66,7 @@
   margin-top: .6rem;
   border-radius: 1rem;
   font-size: 1rem;
+  margin-left: .2rem;
   &:active{
     scale: .95;
   }

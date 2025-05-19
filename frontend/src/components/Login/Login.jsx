@@ -1,8 +1,10 @@
-import React, { useState} from "react";
+import React, { useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
-
+import noteContext from "../../context/notes/NoteContext";
 import "./Login.css";
 function Login(props) {
+  const context = useContext(noteContext);
+  const {setLoading} = context;
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,7 +12,7 @@ function Login(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const response = await fetch(`${API}/api/User/login`, {
         method: "POST",
@@ -23,6 +25,7 @@ function Login(props) {
 
       if (!response.ok) {
         navigate("/login");
+        setLoading(false);
         setEmail("");
         setPassword("");
         props.showAlert('danger', 'Error', 'Credentials are wrong');
@@ -30,6 +33,7 @@ function Login(props) {
       }
       const data = await response.json();
       localStorage.setItem("name", data.user.name); // ✅ Save it
+      setLoading(false)
       props.showAlert('success', 'Success', 'Login successfully');
       navigate("/Home");
     } catch (error) {
@@ -44,7 +48,7 @@ function Login(props) {
           <h2>
             Welcome to <span id="stl-font">𝚂𝚖𝚊𝚛𝚝𝙹𝚘𝚝</span>
           </h2>
-          <h3>Login your account</h3> <br />
+          <h3 className="vis-h">Login your account</h3> 
           <form
             action="/user/login"
             method="post"

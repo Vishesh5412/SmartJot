@@ -12,6 +12,10 @@
   height: 100%;
   width: 100%;
   }
+  input{
+    border-width: 0;
+    background-color: red;
+  }
   .container{
     display: grid;
   }
@@ -63,6 +67,7 @@
   margin-top: .6rem;
   border-radius: 1rem;
   font-size: 1rem;
+  margin-left: .2rem;
   &:active{
     scale: .95;
   }

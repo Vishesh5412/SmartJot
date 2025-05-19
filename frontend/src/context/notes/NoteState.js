@@ -5,6 +5,7 @@ const NoteState = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(false);  //for the loader
   function handleUserLogin(bool) {
     setIsLoggedIn(bool);
   }
@@ -88,6 +89,7 @@ const NoteState = (props) => {
     updatedNoteDescription,
     updatedNoteCategory
   ) => {
+    setLoading(true);
     try {
       const response = await fetch(`${API}/api/Notes/updatenote/${id}`, {
         method: "PUT",
@@ -103,10 +105,12 @@ const NoteState = (props) => {
       });
       const data = await response.json();
       if (!response.ok) {
+        setLoading(false);
         const errorMessage = data.message || "Unable to update note";
         props.showAlert("danger", "Error", errorMessage); // Show the error alert
         return;
       }
+      setLoading(false);
       navigate("/Home");
       props.showAlert("success", "Success", "Note Updated"); // Show the error alert
       setUpdatedNote("");
@@ -124,6 +128,7 @@ const NoteState = (props) => {
   };
 
   const addNote = async (title, description, category) => {
+    setLoading(true);
     try {
       const response = await fetch(`${API}/api/Notes/createnote`, {
         method: "POST",
@@ -135,11 +140,13 @@ const NoteState = (props) => {
       });
       const data = await response.json();
       if (!response.ok) {
+        setLoading(false);
         const errorMessage = data.message || "Unable to create note";
         props.showAlert("danger", "Error", errorMessage); // Show the error alert
         return;
       }
       setNotes([...notes, data.note]);
+      setLoading(false);
       props.showAlert("success", "Success", "Note created"); // Show the error alert
       setTitle("");
       setDescription("");
@@ -150,6 +157,7 @@ const NoteState = (props) => {
   };
 
   const deleteNote = async (id) => {
+    setLoading(true);
     try {
       const response = await fetch(`${API}/api/Notes/deletenote/${id}`, {
         method: "DELETE",
@@ -158,6 +166,7 @@ const NoteState = (props) => {
       const data = await response.json();
       if (!response.ok) {
         const errorMessage = data.message || "Unable to delete note";
+        setLoading(false);
         props.showAlert("danger", "Error", errorMessage); // Show the error alert
         if (errorMessage === data.message) {
           navigate("/");
@@ -165,6 +174,7 @@ const NoteState = (props) => {
         return;
       }
       await fetchNotes();
+      setLoading(false);
       props.showAlert("success", "Success", "Note deleted ."); // Show the error alert
     } catch (err) {
       console.log("Unable to delete note", err.message);
@@ -195,6 +205,8 @@ const NoteState = (props) => {
         setDescription,
         category,
         setCategory,
+        loading, 
+        setLoading
       }}
     >
       {props.children}

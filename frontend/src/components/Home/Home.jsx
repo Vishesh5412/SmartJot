@@ -18,23 +18,27 @@ function Home(props) {
     setDescription,
     category,
     setCategory,
+    setLoading
   } = context; //isse notes or setnotes direct access kre ja skte hai without using context.notes or contet.setNotes
-  const  userName = localStorage.getItem('name') || '';
+  // const  userName = localStorage.getItem('name') || '';
   const API = process.env.REACT_APP_API_URL;
 
   const handleLogout = async (e) => {
+    setLoading(true);
     try {
       const response = await fetch(`${API}/api/User/Logout`, {
         method: "GET",
         credentials: "include", //without this deletion and setting of cookie not possible
       });
       if (!response.ok) {
+        setLoading(false);
         navigate("/Home");
         return;
       }
       localStorage.removeItem("name");
       navigate("/");
       handleUserLogin();
+      setLoading(false);
       props.showAlert("success", "Success", "User logout successfully");
     } catch (err) {
       console.log(err.message);
@@ -49,10 +53,10 @@ function Home(props) {
           className="btn btn-danger lgt-btn"
           onClick={handleLogout}
         >
-          Log Out
+          <i className="fa-solid fa-right-from-bracket"></i>
         </button>
         <div className="h-tp">
-          <p>👋 Hello {userName}</p>
+          <p>👋 Hello</p>
         </div>
         <form onSubmit={handleAddLogic}>
           <div className="form-group col-md-3  mb-1">

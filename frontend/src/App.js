@@ -8,6 +8,7 @@ import NoteState from "./context/notes/NoteState.js";
 import UserState from './context/user/UserState.js';
 import Alert from "./components/Alert/Alert.js";
 import Edit from "./components/Home/Edit.jsx";
+import Loader from "./components/Loader/Loader.jsx"
 import { Routes, Route } from "react-router-dom"; // Removed BrowserRouter
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <NoteState showAlert={showAlert}>
         <Navbar />
         <Alert alert={alert} />
+        <Loader />
         <Routes>
           <Route path="/" element={<Register showAlert={showAlert} />} />
           <Route path="/login" element={<Login showAlert={showAlert} />} />

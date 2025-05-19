@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
+import noteContext from "../../context/notes/NoteContext";
 import "./Register.css";
 function Register(props) {
+  const context = useContext(noteContext);
+  const {setLoading} = context;
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -9,6 +12,7 @@ function Register(props) {
   const [rePassword, setRePassword] = useState("");
   const API = process.env.REACT_APP_API_URL;
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     try {
       if (password !== rePassword) {
@@ -26,15 +30,17 @@ function Register(props) {
       });
       const data = await response.json();
       if (!response.ok) {
+        setLoading(false);
         // Show error message from the backend response
         const errorMessage =
-          data.message || "Registration failed. Please try again.";
+        data.message || "Registration failed. Please try again.";
         props.showAlert("danger", "Error", errorMessage); // Show the error alert
         navigate("/");
         return; // Do not continue to redirect
       }
       localStorage.setItem("name", data.user.name);
       navigate("/Home");
+      setLoading(false);
       props.showAlert("success", "Success", "User registered successfully");
     } catch (err) {
       console.log(err.message);
@@ -48,7 +54,7 @@ function Register(props) {
           <h2>
             Welcome to <span id="stl-font">𝚂𝚖𝚊𝚛𝚝𝙹𝚘𝚝</span>
           </h2>
-          <h3>Create your account</h3> <br />
+          <h3 className="vis-h">Create your account</h3> 
           <form
             action="/user/register"
             method="post"

@@ -5,6 +5,15 @@ html{
     position: absolute;
     right: 1rem;
 }
+input{
+    border-radius: 0;
+}
+textarea{
+    hyphens: auto;    
+    overflow-wrap: break-word; 
+    white-space: pre-wrap;  
+    height: 200px;
+}
 .container{
     display: block;
     max-width: 1500px;
@@ -24,13 +33,16 @@ html{
     font-size: 1.2rem;
 }
 .h-tp{
-    font-size: 2rem;
+    font-size: 1.7rem;
     break-inside: auto;
     /* background-color: blue; */
 }
 .form-control{
     border: 1px solid black;
+    border-radius: 0;
     font-size: 1.5rem;
+    padding: .5rem;
+    line-height: 1.1;
 }
 .h-list-hing{
     font-size: 2rem;
@@ -59,7 +71,7 @@ html{
 }
 .fa-trash{
     cursor: pointer;
-    margin-left: 1rem;
+    margin-left: 1.5rem;
     color: rgb(232, 7, 3);
 }
 .fa-clock{
@@ -79,4 +91,9 @@ html{
 }
 i{
     cursor: pointer;
+}
+@media (max-width: 500px){
+ .form-control{
+    font-size: 1.2rem;
+ }
 }
